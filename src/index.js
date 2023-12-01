@@ -1,10 +1,10 @@
 
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import Notiflix from 'notiflix';
+
 import { fetchImages } from './requests';
 import { createPhotoCard, createColumnContainers, createInfoBlock } from './markup';
-
-//import SimpleLightbox from 'simplelightbox';
-//import 'simplelightbox/dist/simple-lightbox.min.css';
-//import Notiflix from 'notiflix';
 
 
 const form = document.getElementById('search-form');
@@ -30,18 +30,18 @@ async function handleSubmit(event) {
     try {
       const response = await fetchImages(searchQuery, page);
       
-      if (response.data.hits.length === 0) {
+      if (data.hits.length === 0) {
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
         loadMoreBtn.style.display = 'none';
         return;
       }
   
-      handleImages(response.data.hits);
+      handleImages(data.hits);
   
-      const totalHits = response.data.totalHits;
+      const totalHits = data.totalHits;
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
   
-      handleEndOfResults(response.data.hits.length);
+      handleEndOfResults(data.hits.length);
       smoothScrollToNextGroup();
     } catch (error) {
     console.log(error)
@@ -57,16 +57,16 @@ async function handleLoadMore() {
     page++;
     
     try {
-      const response = await fetchImages(searchQuery, page);
-      const newImages = response?.data?.hits;
+      const data = await fetchImages(searchQuery, page);
+      const newImages = data?.hits;
     
-      if (!response || !newImages || newImages.length === 0) {
+      if (!data || !newImages || newImages.length === 0) {
         throw new Error('No valid response or new images found.');
       }
     
       handleImages(newImages);
     
-      handleEndOfResults(response.data.hits.length);
+      handleEndOfResults(data.hits.length);
       scrollToNewImages();
     } catch (error) {
       console.error('Error fetching more images: ', error);
@@ -111,19 +111,19 @@ function smoothScrollToNextGroup() {
   }
 
   try {
-    const response = await fetchImages(searchQuery, page);
+    const data = await fetchImages(searchQuery, page);
     
-    if (response.data.hits.length === 0) {
+    if (data.hits.length === 0) {
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       return;
     }
 
-    handleImages(response.data.hits);
+    handleImages(data.hits);
 
-    const totalHits = response.data.totalHits;
+    const totalHits = data.totalHits;
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
 
-    handleEndOfResults(response.data.hits.length);
+    handleEndOfResults(data.hits.length);
     smoothScrollToNextGroup();
   } catch (error) {
     console.log(error)
