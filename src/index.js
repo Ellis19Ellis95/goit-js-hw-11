@@ -2,9 +2,9 @@
 import { fetchImages } from './requests';
 import { createPhotoCard, createColumnContainers, createInfoBlock } from './markup';
 
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-import Notiflix from 'notiflix';
+//import SimpleLightbox from 'simplelightbox';
+//import 'simplelightbox/dist/simple-lightbox.min.css';
+//import Notiflix from 'notiflix';
 
 
 const form = document.getElementById('search-form');
@@ -44,6 +44,7 @@ async function handleSubmit(event) {
       handleEndOfResults(response.data.hits.length);
       smoothScrollToNextGroup();
     } catch (error) {
+    console.log(error)
       handleFetchError(error);
     }
   }
@@ -125,6 +126,7 @@ function smoothScrollToNextGroup() {
     handleEndOfResults(response.data.hits.length);
     smoothScrollToNextGroup();
   } catch (error) {
+    console.log(error)
     handleFetchError(error);
   }
 }
