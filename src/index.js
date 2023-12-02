@@ -25,6 +25,7 @@ async function handleSubmit(event) {
   
     if (searchQuery === '') {
       Notiflix.Notify.warning('Please enter a search term!');
+      loadMoreBtn.style.display = 'none';
       return;
     }
   
@@ -48,6 +49,7 @@ async function handleSubmit(event) {
     } catch (error) {
     console.log(error)
       handleFetchError(error);
+      loadMoreBtn.style.display = 'none';
     }
   }
 
