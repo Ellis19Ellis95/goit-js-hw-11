@@ -28,7 +28,7 @@ async function handleSubmit(event) {
     }
   
     try {
-      const response = await fetchImages(searchQuery, page);
+      const data = await fetchImages(searchQuery, page);
       
       if (data.hits.length === 0) {
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
