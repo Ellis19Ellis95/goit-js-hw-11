@@ -83,6 +83,7 @@ body {
 
   .image-container {
     height: 250px; 
+    width: 100%;
     overflow: hidden;
   }
   
@@ -113,6 +114,6 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     box-sizing: border-box;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 10px;
+   
   } 

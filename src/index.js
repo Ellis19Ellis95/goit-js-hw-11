@@ -1,10 +1,9 @@
-
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
 
 import { fetchImages } from './requests';
-import { createPhotoCard, createColumnContainers, createInfoBlock } from './markup';
+import { handleImages, } from './markup';
 
 
 const form = document.getElementById('search-form');
@@ -13,6 +12,8 @@ const loadMoreBtn = document.querySelector('.load-more');
 
 let page = 1;
 let searchQuery = '';
+
+loadMoreBtn.style.display = 'none'
 
 form.addEventListener('submit', handleSubmit);
 
@@ -31,6 +32,7 @@ async function handleSubmit(event) {
       const data = await fetchImages(searchQuery, page);
       
       if (data.hits.length === 0) {
+
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
         loadMoreBtn.style.display = 'none';
         return;
@@ -88,12 +90,16 @@ function handleEndOfResults(imagesLength) {
   }
 }
 
+
 function scrollToNewImages() {
-  const firstNewImage = document.querySelector('.column-container:last-child');
-  if (firstNewImage) {
-    firstNewImage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const columnContainers = document.querySelectorAll('.column-container');
+    if (columnContainers.length > 1) {
+      const lastContainerIndex = columnContainers.length - 1;
+      const nextContainerTopOffset = columnContainers[lastContainerIndex].offsetTop;
+      window.scrollTo({ top: nextContainerTopOffset, behavior: 'smooth' });
+    }
   }
-}
+
 
 function smoothScrollToNextGroup() {
   
@@ -135,4 +141,7 @@ function handleFetchError(error) {
   Notiflix.Notify.failure('Oops! Something went wrong. Please try again.');
 }
 
-loadMoreBtn.style.display = 'none';  
+loadMoreBtn.style.display = 'none';   
+
+
+

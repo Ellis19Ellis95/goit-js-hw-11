@@ -1,3 +1,6 @@
+ 
+const gallery = document.querySelector('.gallery');
+
 function createInfoBlock(image) {
     const infoItems = ['Likes', 'Views', 'Comments', 'Downloads'];
     const infoWrapper = document.createElement('div');
@@ -31,7 +34,13 @@ function createInfoBlock(image) {
       return column;
     });
   
-    images.forEach((image, index) => {
+    const columnElements = columnContainers.map(column => {
+      const columnContainer = document.createElement('div');
+      columnContainer.classList.add('column-container');
+      return columnContainer;
+    });
+  
+    const photoCards = images.map(image => {
       const photoCard = document.createElement('div');
       photoCard.classList.add('photo-card');
   
@@ -53,20 +62,26 @@ function createInfoBlock(image) {
       const infoBlock = createInfoBlock(image);
       photoCard.appendChild(infoBlock);
   
-      const columnIndex = index % columns;
-      columnContainers[columnIndex].appendChild(photoCard);
+      return photoCard;
     });
   
-    columnContainers.forEach(column => {
-      const columnContainer = document.createElement('div');
-      columnContainer.classList.add('column-container');
-      columnContainer.appendChild(column);
-      gallery.appendChild(columnContainer);
+    const gallery = document.querySelector('.gallery');
+  
+    photoCards.forEach((photoCard, index) => {
+      const columnIndex = index % columns;
+      columnElements[columnIndex].appendChild(photoCard);
+    });
+  
+    columnElements.forEach(columnElement => {
+      const column = document.createElement('div');
+      column.classList.add('column');
+      column.appendChild(columnElement);
+      gallery.appendChild(column);
     });
   
     const lightbox = new SimpleLightbox('.gallery a');
     lightbox.refresh();
   }
+  
 
-
-  export { handleImages, createInfoBlock };
+  export { handleImages, };
