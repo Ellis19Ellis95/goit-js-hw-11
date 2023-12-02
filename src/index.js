@@ -79,14 +79,6 @@ async function handleLoadMore() {
     Notiflix.Notify.failure('Oops! Something went wrong while loading more images.');
   }
 
-  function handleImages(images) {
-    const columns = 4;
-    const columnContainers = Array.from({ length: columns }, () => {
-      const column = document.createElement('div');
-      column.classList.add('column');
-      return column;
-    });
-  }
 function handleEndOfResults(imagesLength) {
   if (imagesLength < 40) {
     loadMoreBtn.style.display = 'none';
