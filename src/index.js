@@ -26,10 +26,10 @@ function checkEmailStatus(email) {
 
     if (registeredEmail === email) {
       // If the email matches and it's previously registered, display -1.jpg modal
-      displayModal('/src/images/-1.jpg');
+      displayModal('/src/images/2reg.jpg');
     } else {
       // If the email matches but it's a new registration, display +1.jpg modal
-      displayModal('/src/images/+1.jpg');
+      displayModal('/src/images/1reg.jpg');
       // Store the registered email in localStorage for future reference
       localStorage.setItem('registeredEmail', email);
     }
