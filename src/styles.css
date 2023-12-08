@@ -1,119 +1,197 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .search-form {
-    position: relative;
-    display: flex;
-    justify-content: center; 
-    margin-top: 10px; 
-    margin-bottom: 10px;
-  }
-  
-  input[type="text"] {
-    width: 300px; 
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 0; 
-    box-sizing: border-box; 
-    transition: border-color 0.3s ease; 
-  }
-  
-  input[type="text"]:hover,
-  input[type="text"]:focus,
-  .search-button:hover,
-  .search-button:focus { 
-    border-color: #000; 
-    outline: none; 
-  }
-  
-  .search-button {
-    background-color: #ddd; 
-    border: none;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-    outline: 1px solid transparent; 
-  }
-  
-  .search-button svg {
-    fill: #333; 
-  }
 
-  .search-button:hover,
-  .search-button:focus { 
-    border: 1px solid #000; 
-    outline: none; 
-  }
-
-  
-  
-  .header {
-    background-color: #146dac; 
+footer {
+    font-family: 'Neue Montreal', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Дозволяє блокам переноситись на новий ряд */
+    background-color: #6D8434;
+    color: white;
     padding: 20px;
-    color: #fff; 
-    width: 100%; 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
   }
-
- 
-  
-  .column-container {
-    flex-basis: 100%;
+  .footer-div {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center; /* Вирівнюємо елементи по вертикалі вздовж осі Y */
+    width: 100%;
+    flex-wrap: wrap; /* Дозволяє блокам переноситись на новий ряд */
+  }
+  
+  .footer-center {
+    display: flex; /* Внутрішній контейнер для column-2 */
+    justify-content: center; /* Центруємо column-2 */
+    align-items: center; /* Вирівнюємо по вертикалі */
+    flex: 1; /* Розтягуємо контейнер column-2 на вільний простір */
+    max-width: calc(33% - 20px); /* Зберігаємо проміжок між колонками */
+    margin-right: 20px; /* Відступ між колонками */
+  }
+  
+  .column-1,
+  .column-3 {
+    flex: 0 0 auto;
+    margin-right: 20px; /* Відступ між колонками */
+  }
+  .column-1 {
+    flex: 0 0 auto;
+    margin-right: 20px; /* Відступ між колонками */
+  }
+
+   .agreement {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .footer-list {
+    list-style: none; /* Відключаємо маркери списку */
+    display: flex; /* Розміщуємо елементи в рядок */
+    justify-content: space-between; /* Рівномірно розподіляємо елементи */
+    width: 100%;
+    padding: 0; /* Відключаємо внутрішній відступ у списку */
+  }
+  
+  .footer-item {
+    margin-right: 10px; /* Відступ між логотипами соцмереж */
+  }
+  
+  .footer-item-svg {
+    /*width: 44px; /* Задаємо ширину для логотипів соцмереж */
+    /*height: 44px; /* Задаємо висоту для логотипів соцмереж */
+    fill: white; /* Задаємо колір логотипів */
+  }
+
+
+  .link {
+    text-decoration: none;/* Відключаємо нижнє підкреслення */
+  }
+
+  .column-1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Вирівнюємо контент справа */
+  }
+  
+  .link-span {
+    font-family: 'fsp-demo-quincy-cf-black';
+    font-weight: 900;
+    color: #E8E8E2;
+    text-decoration: none;
+    margin-left: 10px; /* Відступ від логотипу */
+  }
+
+  .footer-logo-svg {
+display: flex;
+  align-items: center;
+  margin-left: auto; /* Розташувати контейнер справа */
   }
  
-  .column {
-    margin-bottom: 20px; 
+  .footer-item-link:hover .footer-item-svg > use,
+  .footer-item-link:focus .footer-item-svg > use {
+    fill: #E8E8E2; /* Колір самої іконки з рамкою */
+  }
+  
+  .footer-item-link:hover .footer-item-svg {
+    background-color: rgba(232, 232, 226, 0.3); /* Прозорість фону іконки при ховері та фокусі */
+    border-radius: 20%; /* Радіус бордера для фону при ховері та фокусі */
   }
 
+  .footer-input {
+    /*background-color: #F2F2F2; /* Колір фону для форми */
+    border-radius: 50px; /* Бордер радіус */
+    width: 336px; /* Ширина форми */
+    height: 48px; /* Висота форми */
+  }
   
 
-  .image-container {
-    height: 250px; 
-    width: 100%;
-    overflow: hidden;
+  .footer-box-form .footer-form .footer-input {
+    text-indent: 20px;
+  }
+
+  .footer-box-form .footer-form .footer-input {
+    background-color: #6D8434; 
+    border: 1px solid #E8E8E2;; /* Колір рамки */
+    color: #E8E8E2;; /* Колір тексту вводу */
+  }
+
+
+  .footer-box-form .footer-form .footer-input::placeholder {
+    color: #E8E8E2;; /* Колір плейсхолдера */
   }
   
-  .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
   
-  .description {
+  .footer-box-form .footer-form .footer-input:focus {
+    outline: none; /* Видаляємо стандартний фокус */
+    border-color: #E8E8E2; /* Колір рамки при фокусі */
+  }
+
+
+  .footer-form {
     display: flex;
     flex-direction: column;
+    align-items: flex-end; /* Розташування внизу справа */
+    gap: 10px; /* Відстань між елементами */
   }
   
-  .info-item {
-    margin-bottom: 5px;
-  }  
+  .footer-btn {
+    width: 340px;
+    height: 48px;
+    color: #010101;
+    background-color: #E8E8E2;
+    border: none;
+    border-radius: 50px;
+  }
+
   
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  .footer-btn:hover,
+  .footer-btn:focus {
+    color: #6D8434; /* Колір при ховері або фокусі */
+  }
+
+  .column-1,
+  .column-2,
+  .column-3 {
+    margin-top: 0px; /* Однаковий відступ для всіх колонок */
+  }
+
+
+
+
+
+
+
+
+
+
+  .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
   }
   
-  .photo-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-sizing: border-box;
-    margin: 10px;
-   
-  } 
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }

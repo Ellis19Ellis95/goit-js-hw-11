@@ -1,126 +1,71 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-import Notiflix from 'notiflix';
 
-import { fetchImages } from './requests';
-import { handleImages, } from './markup';
+// Function to display the modal with an image
+function displayModal(imageUrl) {
+  const modal = document.getElementById('myModal');
+  const modalContent = document.querySelector('.modal-content');
 
+  // Set the image in the modal content
+  modalContent.innerHTML = `<img src="${imageUrl}" alt="Modal Image" />`;
 
-const form = document.getElementById('search-form');
-const gallery = document.querySelector('.gallery');
-const loadMoreBtn = document.querySelector('.load-more');
+  // Display the modal
+  modal.style.display = 'block';
+}
 
-let page = 1;
-let searchQuery = '';
+// Function to validate the email format
+function validateEmail(email) {
+  const emailRegex = /\S+@\S+\.\S+/;
+  return emailRegex.test(email);
+}
 
-loadMoreBtn.style.display = 'none'
+// Function to check and handle the email status
+function checkEmailStatus(email) {
+  // Check if the provided email is the specific one for verification
+  if (email === 'elena.gudz1995@gmail.com') {
+    // Check if this email has been registered before
+    const registeredEmail = localStorage.getItem('registeredEmail');
 
-form.addEventListener('submit', handleSubmit);
-
-async function handleSubmit(event) {
-    event.preventDefault();
-    gallery.innerHTML = '';
-    page = 1;
-    searchQuery = event.target.elements.searchQuery.value.trim();
-  
-    if (searchQuery === '') {
-      Notiflix.Notify.warning('Please enter a search term!');
-      loadMoreBtn.style.display = 'none';
-      return;
-    }
-  
-    try {
-      const data = await fetchImages(searchQuery, page);
-      
-      if (data.hits.length === 0) {
-
-        Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-        loadMoreBtn.style.display = 'none';
-        return;
-      }
-  
-      handleImages(data.hits);
-  
-      const totalHits = data.totalHits;
-      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-  
-      handleEndOfResults(data.hits.length);
-      smoothScrollToNextGroup();
-    } catch (error) {
-    console.log(error)
-      handleFetchError(error);
-      loadMoreBtn.style.display = 'none';
-    }
-  }
-
-loadMoreBtn.addEventListener('click', handleLoadMore);
-
-
-
-async function handleLoadMore() {
-    page++;
-    
-    try {
-      const data = await fetchImages(searchQuery, page);
-      const newImages = data?.hits;
-    
-      if (!data || !newImages || newImages.length === 0) {
-        throw new Error('No valid response or new images found.');
-      }
-    
-      handleImages(newImages);
-    
-      handleEndOfResults(data.hits.length);
-      scrollToNewImages();
-    } catch (error) {
-      console.error('Error fetching more images: ', error);
-      Notiflix.Notify.failure('Oops! Something went wrong while loading more images.');
-    }
-  }
-  
-  function handleLoadMoreError(error) {
-    console.error('Error fetching more images: ', error);
-    Notiflix.Notify.failure('Oops! Something went wrong while loading more images.');
-  }
-
-
-
-  function handleEndOfResults(imagesLength) {
-    if (imagesLength === 0) {
-      loadMoreBtn.style.display = 'none';
-      Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-    } else if (imagesLength < 40) {
-      loadMoreBtn.style.display = 'none';
-      Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+    if (registeredEmail === email) {
+      // If the email matches and it's previously registered, display -1.jpg modal
+      displayModal('/src/images/-1.jpg');
     } else {
-      loadMoreBtn.style.display = 'block';
+      // If the email matches but it's a new registration, display +1.jpg modal
+      displayModal('/src/images/+1.jpg');
+      // Store the registered email in localStorage for future reference
+      localStorage.setItem('registeredEmail', email);
     }
+  } else {
+    // If the email doesn't match the specific one for verification, show an error or handle as needed
+    console.log('Invalid email');
   }
-
- 
-
-
-
-function scrollToNewImages() {
-    const columnContainers = document.querySelectorAll('.column-container');
-    if (columnContainers.length > 1) {
-      const lastContainerIndex = columnContainers.length - 1;
-      const nextContainerTopOffset = columnContainers[lastContainerIndex].offsetTop;
-      window.scrollTo({ top: nextContainerTopOffset, behavior: 'smooth' });
-    }
-  }
-
-
-function smoothScrollToNextGroup() {
-  
 }
 
-function handleFetchError(error) {
-  //console.error('Error fetching images: ', error);
-  Notiflix.Notify.failure('Oops! Something went wrong. Please try again.');
-}
+// Handle form submission
+document.querySelector('.footer-form').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent the default form submission behavior
 
-loadMoreBtn.style.display = 'none';   
+  const emailInput = document.querySelector('.footer-input');
+  const enteredEmail = emailInput.value;
 
+  // Validate the entered email
+  if (validateEmail(enteredEmail)) {
+    // If the email is valid, check and handle its status
+    checkEmailStatus(enteredEmail);
+  } else {
+    // If the email is invalid, show an error or handle as needed
+    console.log('Invalid email format');
+  }
+});
 
+// Get the modal and close it when the user clicks outside the modal content
+const modal = document.getElementById('myModal');
+window.onclick = function (event) {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+};
 
+// Close the modal when the user clicks on the close button
+const closeBtn = document.querySelector('.close');
+closeBtn.addEventListener('click', function () {
+  modal.style.display = 'none';
+});
