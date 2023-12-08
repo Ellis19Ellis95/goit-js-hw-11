@@ -1,67 +1,33 @@
-function displayModal(imageUrl) {
-  const modal = document.getElementById('myModal');
-  const modalContent = document.querySelector('.modal-content');
+function validateEmail(email) {
+  const validEmail = 'elena.gudz1995@gmail.com';
+  return email.trim().toLowerCase() === validEmail;
+}
 
-  modalContent.innerHTML = `<img src="${imageUrl}" alt="Modal Image" />`;
+function isEmailRegistered(email) {
+  return email.trim().toLowerCase() === 'elena.gudz1995@gmail.com';
+}
 
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
   modal.style.display = 'block';
 }
 
+function handleRegistration(email) {
+  const modal1Id = 'myModal1';
+  const modal2Id = 'myModal2';
 
-function validateEmail(email) {
-  const emailRegex = /\S+@\S+\.\S+/;
-  return emailRegex.test(email);
-}
-
-
-function checkEmailStatus(email) {
-  
-  if (email === 'elena.gudz1995@gmail.com') {
-   
-    const registeredEmail = localStorage.getItem('registeredEmail');
-
-    if (registeredEmail === email) {
-      // previously registered
-      displayModal('/src/images/2reg.jpg');
+  if (validateEmail(email)) {
+    if (isEmailRegistered(email)) {
+      openModal(modal2Id);
     } else {
-      // new registration
-      displayModal('/src/images/1reg.jpg');
-      
-      localStorage.setItem('registeredEmail', email);
+      openModal(modal1Id);
     }
   } else {
-    
-    console.log('Invalid email');
+    console.log('Невірний формат електронної адреси!');
   }
 }
 
-
-document.querySelector('.footer-form').addEventListener('submit', function (event) {
-  event.preventDefault(); 
-
-  const emailInput = document.querySelector('.footer-input');
-  const enteredEmail = emailInput.value;
-
-  
-  if (validateEmail(enteredEmail)) {
-    
-    checkEmailStatus(enteredEmail);
-  } else {
-    
-    console.log('Invalid email format');
-  }
-});
-
-
-const modal = document.getElementById('myModal');
-window.onclick = function (event) {
-  if (event.target === modal) {
-    modal.style.display = 'none';
-  }
-};
-
-
-const closeBtn = document.querySelector('.close');
-closeBtn.addEventListener('click', function () {
-  modal.style.display = 'none';
+document.addEventListener('DOMContentLoaded', function() {
+  const exampleEmail = 'elena.gudz1995@gmail.com';
+  handleRegistration(exampleEmail);
 });
