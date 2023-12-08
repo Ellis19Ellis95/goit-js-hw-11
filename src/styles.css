@@ -1,9 +1,9 @@
 
 footer {
-    font-family: 'Neue Montreal', sans-serif;
+    /*font-family: 'Neue Montreal', sans-serif;*/
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Дозволяє блокам переноситись на новий ряд */
+    flex-wrap: wrap; 
     background-color: #6D8434;
     color: white;
     padding: 20px;
@@ -11,28 +11,28 @@ footer {
   .footer-div {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Вирівнюємо елементи по вертикалі вздовж осі Y */
+    align-items: center; 
     width: 100%;
-    flex-wrap: wrap; /* Дозволяє блокам переноситись на новий ряд */
+    flex-wrap: wrap; 
   }
   
   .footer-center {
-    display: flex; /* Внутрішній контейнер для column-2 */
-    justify-content: center; /* Центруємо column-2 */
-    align-items: center; /* Вирівнюємо по вертикалі */
-    flex: 1; /* Розтягуємо контейнер column-2 на вільний простір */
-    max-width: calc(33% - 20px); /* Зберігаємо проміжок між колонками */
-    margin-right: 20px; /* Відступ між колонками */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex: 1; 
+    max-width: calc(33% - 20px); 
+    margin-right: 20px; 
   }
   
   .column-1,
   .column-3 {
     flex: 0 0 auto;
-    margin-right: 20px; /* Відступ між колонками */
+    margin-right: 20px; 
   }
   .column-1 {
     flex: 0 0 auto;
-    margin-right: 20px; /* Відступ між колонками */
+    margin-right: 20px;
   }
 
    .agreement {
@@ -43,32 +43,30 @@ footer {
   }
   
   .footer-list {
-    list-style: none; /* Відключаємо маркери списку */
-    display: flex; /* Розміщуємо елементи в рядок */
-    justify-content: space-between; /* Рівномірно розподіляємо елементи */
+    list-style: none; /
+    display: flex; 
+    justify-content: space-between; 
     width: 100%;
-    padding: 0; /* Відключаємо внутрішній відступ у списку */
+    padding: 0; 
   }
   
   .footer-item {
-    margin-right: 10px; /* Відступ між логотипами соцмереж */
+    margin-right: 10px; 
   }
   
   .footer-item-svg {
-    /*width: 44px; /* Задаємо ширину для логотипів соцмереж */
-    /*height: 44px; /* Задаємо висоту для логотипів соцмереж */
-    fill: white; /* Задаємо колір логотипів */
+    fill: white; 
   }
 
 
   .link {
-    text-decoration: none;/* Відключаємо нижнє підкреслення */
+    text-decoration: none;
   }
 
   .column-1 {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Вирівнюємо контент справа */
+    justify-content: flex-end; 
   }
   
   .link-span {
@@ -76,30 +74,30 @@ footer {
     font-weight: 900;
     color: #E8E8E2;
     text-decoration: none;
-    margin-left: 10px; /* Відступ від логотипу */
+    margin-left: 10px; 
   }
 
   .footer-logo-svg {
 display: flex;
   align-items: center;
-  margin-left: auto; /* Розташувати контейнер справа */
+  margin-left: auto; 
   }
  
   .footer-item-link:hover .footer-item-svg > use,
   .footer-item-link:focus .footer-item-svg > use {
-    fill: #E8E8E2; /* Колір самої іконки з рамкою */
+    fill: #E8E8E2; 
   }
   
   .footer-item-link:hover .footer-item-svg {
-    background-color: rgba(232, 232, 226, 0.3); /* Прозорість фону іконки при ховері та фокусі */
-    border-radius: 20%; /* Радіус бордера для фону при ховері та фокусі */
+    background-color: rgba(232, 232, 226, 0.3); 
+    border-radius: 20%; 
   }
 
   .footer-input {
-    /*background-color: #F2F2F2; /* Колір фону для форми */
-    border-radius: 50px; /* Бордер радіус */
-    width: 336px; /* Ширина форми */
-    height: 48px; /* Висота форми */
+    background-color: #F2F2F2; 
+    border-radius: 50px; 
+    width: 336px; 
+    height: 48px; 
   }
   
 
@@ -109,27 +107,27 @@ display: flex;
 
   .footer-box-form .footer-form .footer-input {
     background-color: #6D8434; 
-    border: 1px solid #E8E8E2;; /* Колір рамки */
-    color: #E8E8E2;; /* Колір тексту вводу */
+    border: 1px solid #E8E8E2;
+    color: #E8E8E2;;
   }
 
 
   .footer-box-form .footer-form .footer-input::placeholder {
-    color: #E8E8E2;; /* Колір плейсхолдера */
+    color: #E8E8E2;; 
   }
   
   
   .footer-box-form .footer-form .footer-input:focus {
-    outline: none; /* Видаляємо стандартний фокус */
-    border-color: #E8E8E2; /* Колір рамки при фокусі */
+    outline: none; 
+    border-color: #E8E8E2; 
   }
 
 
   .footer-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Розташування внизу справа */
-    gap: 10px; /* Відстань між елементами */
+    align-items: flex-end; 
+    gap: 10px; 
   }
   
   .footer-btn {
@@ -144,16 +142,14 @@ display: flex;
   
   .footer-btn:hover,
   .footer-btn:focus {
-    color: #6D8434; /* Колір при ховері або фокусі */
+    color: #6D8434; 
   }
 
   .column-1,
   .column-2,
   .column-3 {
-    margin-top: 0px; /* Однаковий відступ для всіх колонок */
+    margin-top: 0px; 
   }
-
-
 
 
 
